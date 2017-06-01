@@ -1,10 +1,9 @@
 var mongoose = require('mongoose');
 
-var PostSchema = new mongoose.Schema({
-  username: {type: String, required: true},
+var PostSchema = mongoose.Schema({
+  username: {type: String},
   body: {type: String, required: true},
   date: {type: Date, required: true, default: Date.now}
 });
 
-var Post = mongoose.model('Posts', PostSchema);
-module.exports = Post;
+module.exports = mongoose.model('Post', PostSchema);

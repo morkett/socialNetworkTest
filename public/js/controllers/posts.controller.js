@@ -1,4 +1,4 @@
-function PostsController(PostsFactory){
+function PostsController(PostsFactory, $state){
   var controller = this;
   // controller.posts = [];
 
@@ -11,6 +11,20 @@ function PostsController(PostsFactory){
       function (error) {
         console.warn('getPosts: no results', error);
       }
+    );
+  };
+  controller.createPost = function() {
+    console.log('createPost()');
+
+    PostsFactory.createPost(controller.postBody).then(
+        function success(response) {
+       //redirects to another state
+          console.log('Created new duck: ', response);
+          $state.go('home');
+        },
+     function error(error) {
+       console.warn('Error creating duck:',error);
+     }
     );
   };
 

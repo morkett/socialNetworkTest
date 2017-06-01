@@ -5,8 +5,16 @@ function PostsFactory($http) {
         method: 'GET',
         url: '/api/posts'
       });
+    },
+    createPost: function(newPost) {
+      return $http({
+        method: 'POST',
+        url: '/api/posts',
+        data: newPost
+      });
     }
   };
+
 }
 PostsFactory.$inject = ['$http'];
 

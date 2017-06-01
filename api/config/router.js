@@ -3,6 +3,7 @@ var router = express.Router();
 var PostsController = require('../controllers/posts.controllers.js');
 
 router.get('/api/posts', PostsController.getPosts);
+router.post('/api/posts', PostsController.createPost);
 // router.route('/api/movies/getMainList')
 //   .get(movieController.getMainList);
 //
