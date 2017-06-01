@@ -1,6 +1,7 @@
-function PostsController(PostsFactory, $state){
+function PostsController(PostsFactory, $state, $stateParams){
   var controller = this;
   // controller.posts = [];
+
 
   controller.getPosts = function() {
     PostsFactory.getPosts().then(
@@ -15,21 +16,50 @@ function PostsController(PostsFactory, $state){
   };
   controller.createPost = function() {
     console.log('createPost()');
-
+    controller.postBody.username = 'fred';
     PostsFactory.createPost(controller.postBody).then(
         function success(response) {
        //redirects to another state
           console.log('Created new post: ', response);
-          $state.go('home');
+          $state.reload();
         },
      function error(error) {
        console.warn('Error creating post:',error);
      }
     );
   };
+
+  controller.getPost = function(){
+    var postId = $stateParams.postId;
+    PostsFactory.getOne(postId).then(
+      function success(res) {
+        console.log('getPost:',res);
+        controller.selectedPost = res.data;
+      },
+      function error(err){
+        console.log('Error getting post, front', err);
+      }
+    );
+  };
+
+  controller.deletePost = function(postId){
+    PostsFactory.deletePost(postId).then(
+      function success(res) {
+        console.log('deleted',res);
+        $state.go('home');
+
+      },
+      function error(err){
+        console.warn('Error deleting post',err);
+      }
+    );
+  };
+
 }
 
-PostsController.$inject = ['PostsFactory'];
+
+
+PostsController.$inject = ['PostsFactory', '$state', '$stateParams'];
 angular
   .module('myApp')
   .controller('PostsController', PostsController);

@@ -12,6 +12,18 @@ function PostsFactory($http) {
         url: '/api/posts',
         data: newPost
       });
+    },
+    getOne: function(postId) {
+      return $http({
+        method: 'GET',
+        url: `/api/post/${postId}`
+      });
+    },
+    deletePost: function(postId) {
+      return $http({
+        method: 'DELETE',
+        url: `/api/post/${postId}`
+      });
     }
   };
 

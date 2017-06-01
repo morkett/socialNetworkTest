@@ -16,13 +16,37 @@ function getPosts(req, res) {
 function createPost(req, res) {
   var post = new Posts(req.body);
   post.save(function(err) {
-    if(err) {
-      console.log('Could not create new post');
-    }
+    if(err) return res.json({message: 'Could not create post' + err});
+    res.json({post: post});
+    console.log('Could not create new post');
   });
 }
 
+function getPost(req, res) {
+  var id = req.params.id;
+  Posts.findById({_id: id}, function(err, post){
+    if(err) return res.json({message: 'could not find post b/c', err});
+    res.json({post: post});
+  }).select('-__v');
+}
+
+function deletePost(req, res) {
+  var id = req.params.id;
+  console.log('id', id);
+
+  Posts.remove({_id: id}, function(err){
+    if(err) {
+      return res.json({message: 'could not delete post b/c' + err});
+    }
+    res.json({message: 'post successfully deleted'});
+  });
+}
+
+
+
 module.exports = {
   getPosts: getPosts,
-  createPost: createPost
+  createPost: createPost,
+  getPost: getPost,
+  deletePost: deletePost
 };

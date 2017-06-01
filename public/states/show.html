@@ -1,0 +1,8 @@
+<h2>Edit Message</h2>
+
+<section ng-init="posts.getPost()">
+  <h3>{{posts.selectedPost.post.username}}</h3>
+  <p>Message: {{posts.selectedPost.post.body}}</p>
+  {{posts.selectedPost.post._id}}
+  <button ng-click="posts.deletePost(posts.selectedPost.post._id)">X</button>
+</section>

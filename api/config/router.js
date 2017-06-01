@@ -4,16 +4,10 @@ var PostsController = require('../controllers/posts.controllers.js');
 
 router.get('/api/posts', PostsController.getPosts);
 router.post('/api/posts', PostsController.createPost);
-// router.route('/api/movies/getMainList')
-//   .get(movieController.getMainList);
-//
-// //search
-// router.route('/api/movies/search/:searchTerm')
-//   .get(movieController.show);
-//
-// //get one movie
-// router.route('/api/movies/:movieId')
-//   .get(movieController.getOne);
 
+router.route('/api/post/:id')
+  .get(PostsController.getPost)
+  .delete(PostsController.deletePost);
+// router.delete('/api/posts/delete', PostsController.deletePost);
 
 module.exports = router;

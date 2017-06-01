@@ -4,6 +4,10 @@ function MainRouter ($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('home', {
       url: '/',
       templateUrl: '/states/home.html'
+    })
+    .state('show', {
+      url: '/post/:postId',
+      templateUrl: '/states/show.html'
     });
 
   $urlRouterProvider.otherwise('/');
