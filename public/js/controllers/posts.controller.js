@@ -27,8 +27,6 @@ function PostsController(PostsFactory, $state){
      }
     );
   };
-
-  controller.hello = 'hello';
 }
 
 PostsController.$inject = ['PostsFactory'];

@@ -14,7 +14,7 @@ function getPosts(req, res) {
 }
 
 function createPost(req, res) {
-  var post = new Post(req.body);
+  var post = new Posts(req.body);
   post.save(function(err) {
     if(err) {
       console.log('Could not create new post');
