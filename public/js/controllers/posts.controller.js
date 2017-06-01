@@ -19,11 +19,11 @@ function PostsController(PostsFactory, $state){
     PostsFactory.createPost(controller.postBody).then(
         function success(response) {
        //redirects to another state
-          console.log('Created new duck: ', response);
+          console.log('Created new post: ', response);
           $state.go('home');
         },
      function error(error) {
-       console.warn('Error creating duck:',error);
+       console.warn('Error creating post:',error);
      }
     );
   };
